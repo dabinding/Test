@@ -1,0 +1,19 @@
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  .login-container
+    .panel.panel-body.login-form
+      .text-center
+        .icon-object.border-slate-300.text-slate-300
+          %i.icon-reading
+        %h5.content-group
+          Login to your account
+          %small.display-block Enter your credentials below
+      .form-group.has-feedback.has-feedback-left
+        = f.email_field :email, autofocus: true, :class => 'form-control', :placeholder => 'some@email.com'
+        .form-control-feedback
+          %i.icon-user.text-muted
+      .form-group.has-feedback.has-feedback-left
+        = f.password_field :password, autofocus: true, :class => 'form-control', :placeholder => 'Password', autocomplete: 'off'
+        .form-control-feedback
+          %i.icon-lock2.text-muted
+      .actions
+        = f.submit 'Log in', :class => 'btn bg-danger-700 btn-block'

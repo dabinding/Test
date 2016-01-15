@@ -1,0 +1,10 @@
+- if static
+  %div.form-control-static
+    %p.text-muted
+      = resource.send name
+- else
+  .is-radio
+    - values.each do |value|
+      %label.mr-20
+        = value
+        = resource.radio_button name, value

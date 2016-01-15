@@ -1,0 +1,6 @@
+- if static
+  %div.form-control-static
+    %p.text-muted
+      = resource.send name
+- else
+  = resource.text_area name, :class => 'form-control required', :placeholder => placeholder, :required => true

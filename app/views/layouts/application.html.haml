@@ -1,0 +1,26 @@
+!!!
+%html
+  %head
+    %title Internship
+    %link{:href => "https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900", :rel => "stylesheet", :type => "text/css"}
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+  %body
+    = render :partial => '/header'
+
+    .page-container
+      .container
+      
+        - if flash[:success]
+          .page-container
+            = render :partial => '/alert', :locals => { :level => :info, :lead => 'Success!', :message => flash[:success], :dismissable => true}
+        - elsif flash[:error]
+          .page-container
+            = render :partial => '/alert', :locals => { :level => :error, :lead => 'Error!', :message => flash[:error], :dismissable => true}
+
+        = yield
+
+    - if content_for? :custom_javascripts
+      = yield :custom_javascripts

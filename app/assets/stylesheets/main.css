@@ -1,0 +1,9 @@
+body {
+  background: #fff url("/images/sp2_bkg.gif") repeat scroll left bottom;
+}
+
+header {
+  min-height: 150px;
+  background-color: #000;
+  border-bottom: 1px solid white;
+}

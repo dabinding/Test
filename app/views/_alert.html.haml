@@ -1,0 +1,30 @@
+- lead ||= ''
+- dismissable ||= false
+- link ||= {}
+- case level
+- when :info
+  .alert.alert-info.alert-styled-left
+    - if dismissable
+      %button.close{"data-dismiss" => "alert", :type => "button"}
+        %span ×
+        %span.sr-only Close
+    %span.text-semibold
+      = lead
+    = message
+    - unless link.empty?
+      %a.alert-link.btn.bg-teal-300.ml-20{:href => link[:href]}
+        %b
+          = link[:lead]
+- when :error
+  .alert.alert-danger.alert-styled-left
+    - if dismissable
+      %button.close{"data-dismiss" => "alert", :type => "button"}
+        %span ×
+        %span.sr-only Close
+    %span.text-semibold
+      = lead
+    = message
+    - unless link.empty?
+      %a.alert-link.btn.bg-teal-300.ml-20{:href => link[:href]}
+        %b
+          = link[:lead]

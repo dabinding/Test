@@ -1,0 +1,186 @@
+- static ||= false
+- form_control = 'form-control'
+- form_control << '-static disabled' if static
+
+.panel.panel-white
+  .panel-heading
+    %h6.panel-title Department Form
+  .panel-body
+    = form_for @form, :url => { :action => :create }, :method => :post, :html => { :class => 'form-validation', :multipart => !static } do |f|
+      %fieldset#validation-step1.step
+        - unless static
+          .row
+            .col-md-12
+              .form-group
+                %label
+                  Unofficial Transcript:
+                  %span.text-danger *
+                  = f.file_field :unofficial_transcript
+
+        .row
+          .col-md-6
+            .form-group
+              %label
+                Change of employer:
+                %span.text-danger.mr-20 *
+                = render :template => '/components/form/radio_button', :locals => { :resource => static ? @form : f, :name => :change_employer, :static => static, :values => %w{ YES NO } }
+
+          .col-md-6
+            .form-group
+              %label
+                Gender
+                %span.text-danger.mr-20 *
+                = render :template => '/components/form/radio_button', :locals => { :resource => static ? @form : f, :name => :gender, :static => static, :values => %w{ MALE FEMALE } }
+
+        .row
+          .col-md-6
+            .form-group
+              %label
+                Student name:
+                %span.text-danger *
+              = render :template => '/components/form/text_field', :locals => { :resource => static ? @form : f, :name => :student_name, :placeholder => 'John Doe', :static => static }
+
+          .col-md-6
+            .form-group
+              %label
+                Student ID Number:
+                %span.text-danger *
+              = render :template => '/components/form/text_field', :locals => { :resource => static ? @form : f, :name => :student_id, :placeholder => '700-###-####', :static => static }
+
+        .row
+          .col-md-6
+            .form-group
+              %label
+                UCM GPA:
+                %span.text-danger *
+              = render :template => '/components/form/text_field', :locals => { :resource => static ? @form : f, :name => :ucm_gpa, :placeholder => 'GPA', :static => static }
+
+        .row
+          .col-md-12
+            .form-group
+              %label
+                Address:
+                %span.text-danger *
+              = render :template => '/components/form/text_field', :locals => { :resource => static ? @form : f, :name => :student_address, :placeholder => 'Some address, Warrensburg MO', :static => static }
+
+        .row
+          .col-md-6
+            .form-group
+              %label
+                Email Address:
+                %span.text-danger *
+              = render :template => '/components/form/text_field', :locals => { :resource => static ? @form : f, :name => :email_address, :placeholder => 'your@email.com', :static => static }
+
+          .col-md-6
+            .form-group
+              %label
+                Phone Number:
+                %span.text-danger *
+              = render :template => '/components/form/text_field', :locals => { :resource => static ? @form : f, :name => :phone_number, :placeholder => '816-000-0000', :static => static }
+
+        .row
+          .col-md-6
+            .form-group
+              %label
+                Credit hours enrolled for the semester when CPT is conducted:
+                %span.text-danger *
+              = render :template => '/components/form/text_field', :locals => { :resource => static ? @form : f, :name => :credit_hours_when_conducted, :placeholder => 'Credit Hours', :static => static }
+
+        .row
+          .col-md-6
+            .form-group
+              %label
+                Name of Company where internship is to be performed:
+                %span.text-danger *
+              = render :template => '/components/form/text_field', :locals => { :resource => static ? @form : f, :name => :company_name, :placeholder => 'Company Name', :static => static }
+
+          .col-md-6
+            .form-group
+              %label
+                Address of Company:
+                %span.text-danger *
+              = render :template => '/components/form/text_field', :locals => { :resource => static ? @form : f, :name => :company_address, :placeholder => '123 Main Road, Some City, 10001', :static => static }
+
+        .row
+          .col-md-6
+            .form-group
+              %label
+                Company Contact Person:
+                %span.text-danger *
+              = render :template => '/components/form/text_field', :locals => { :resource => static ? @form : f, :name => :company_contact, :placeholder => 'Mr. Ralph Lauren, Senior Software Engineer', :static => static }
+
+          .col-md-6
+            .form-group
+              %label
+                Company Phone Number:
+                %span.text-danger *
+              = render :template => '/components/form/text_field', :locals => { :resource => static ? @form : f, :name => :company_phone_number, :placeholder => '816-000-0000', :static => static }
+
+        .row
+          .col-md-12
+            .form-group
+              %label
+                Company E-verify Number:
+                %span.text-danger *
+              = render :template => '/components/form/text_field', :locals => { :resource => static ? @form : f, :name => :company_everify_number, :placeholder => '8675309', :static => static }
+
+        .row
+          .col-md-6
+            .form-group
+              %label
+                Duration of Internship From:
+                %span.text-danger *
+              = render :template => '/components/form/text_field', :locals => { :resource => static ? @form : f, :name => :company_duration_from, :placeholder => '', :static => static }
+
+          .col-md-6
+            .form-group
+              %label
+                To:
+                %span.text-danger *
+              = render :template => '/components/form/text_field', :locals => { :resource => static ? @form : f, :name => :company_duration_to, :placeholder => '', :static => static }
+
+        .row
+          .col-md-6
+            .form-group
+              %label
+                Title or Position Student Will Hold During the Internship:
+                %span.text-danger *
+              = render :template => '/components/form/text_field', :locals => { :resource => static ? @form : f, :name => :internship_position, :placeholder => '', :static => static }
+
+          .col-md-3
+            .form-group
+              %label
+                Hourly Salary
+                %span.text-danger *
+              = render :template => '/components/form/text_field', :locals => { :resource => static ? @form : f, :name => :hourly_salary, :placeholder => '', :static => static }
+
+          .col-md-3
+            .form-group
+              %label
+                Number of work hours per week anticipated
+                %span.text-danger *
+              = render :template => '/components/form/text_field', :locals => { :resource => static ? @form : f, :name => :weekly_hours, :placeholder => '', :static => static }
+
+      - if static
+        %hr
+        .row
+          .col-md-2.pull-right
+            .form-group
+              = link_to 'Print Form', form_path(@form, format: 'pdf'), :class => 'btn btn-success'
+      - else
+        %hr.mt-20
+        %h3 Notice to Applicant
+        .panel.panel-flat.bg-danger-700
+          .container-fluid
+            %h4 By signing this form, I certify that:
+        
+            %ul
+              %li All information provided above is accurate and/or to the best of my knowledge. Otherwise the application is void.
+              %li A copy of the internship offer letter is required before CPT application can be processed.
+              %li I will submit progress and final reports as specified by the internship class CS 5020 Internship in Computer Science
+              %li I will upload my first pay stub and my last pay stub
+              %li I understand that UCM will be calling my company to verify I am an employee of the company I state I am working for.
+        .row
+          .col-md-2.pull-right
+            .form-group
+              = f.submit 'Create', :class => 'btn btn-lg bg-primary-800 btn-block'

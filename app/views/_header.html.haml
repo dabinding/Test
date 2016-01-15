@@ -1,0 +1,31 @@
+%header
+  .container
+    .logo.mb-20
+      %a{:href => 'https://www.ucmo.edu/'}
+        %img{:alt => "UCM logo", :border => "0", :height => "105", :src => '/images/mule_greater.png', :width => "216"}
+  .container
+    %nav.navbar.navbar-inverse.bg-danger-700
+      .container-fluid
+        .navbar-header
+          %a.navbar-brand{:href => root_path} Department Forms
+        #navbar.navbar-collapse.collapse
+          %ul.nav.navbar-nav
+            %li{ :class => @page.eql?('Home') ? 'active' : '' }
+              %a{:href => root_path} Home
+            %li{ :class => @page.eql?('Form') ? 'active' : '' }
+              - if admin?
+                %a{:href => form_index_path} Submitted Forms
+              - else
+                %a{:href => new_form_path} Submit Form
+  
+          %ul.nav.navbar-nav.navbar-right
+            %li{ :class => @page.eql?('Login') ? 'active' : '' }
+              - if admin?
+                %span
+                  Welcome,
+                  = current_admin.email
+                  |
+                  = link_to "Sign out", destroy_admin_session_path, :method => :delete, :class => 'btn btn-default'
+              - else
+                %a{:href => new_admin_session_path} Login
+  

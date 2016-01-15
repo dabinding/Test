@@ -1,0 +1,35 @@
+.row
+  .col-md-6
+    .panel.panel-default.border-grey
+      .panel-heading
+        %h6.panel-title Students
+      .panel-body
+        %h3 Internship application for CS Master Students
+        %ul
+          %li.mb-20
+            .p.mb-10
+              First, the student needs to fill out our 
+              %strong department form
+            .p
+              = link_to 'Department Form', new_form_path, :class => 'btn btn-default'
+          
+          %li.mb-20
+            Student needs to fill out the form from the following link
+            %strong AND bring a copy of the form:
+            %br
+            %a{:href => 'https://www.ucmo.edu/international/students/documents/CPTInstructions9-9-15.pdf', :target => '_blank'}
+              Curricular Practical Training (CPT) Instruction  
+ 
+          %li.mb-20 After student has done the previous steps, they need to bring a copy of their offer letter to Ms. Taylor’s office. When they come to see Ms. Taylor, she will confirm they do indeed have a 3.0 GPA and she will print off the department form and sign the form, stating that they will be completing CPT. Student will then take these to the international center at UCM where they will also need to turn in the two forms. 
+
+  .col-md-6
+    .panel.panel-default.border-grey
+      .panel-heading
+        %h6.panel-title Administrators
+      .panel-body
+        - if current_admin
+          %h5 Welcome back
+          %p.text-muted view all submitted Department Forms
+          = link_to 'View all', form_index_path, :class => 'btn bg-primary-800 btn-block'
+        - else
+          = render :template => '/devise/sessions/new'

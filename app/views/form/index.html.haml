@@ -1,0 +1,43 @@
+.panel.panel-flat
+  .panel-heading
+    %h5.panel-title Department Forms
+  .panel-body
+    %p.text-muted
+      View department form
+  .table-responsive
+    %table.table.table-bordered.table-striped
+      %thead
+        %tr
+          %th #
+          %th Student Name
+          %th Student ID Number
+          %th Submitted At
+          %th Form
+          %th Unofficial Transcript
+          %th Transcript Letter
+      %tbody
+        - @forms.each_with_index do |form, i|
+          %tr
+            %td
+              = i + 1
+            %td
+              = form.student_name
+            %td
+              = form.student_id
+            %td
+              = form.created_at
+            %td
+              %a.button.btn.bg-primary-300.btn-labeled{:href => form_path(form)}
+                %b
+                  %i.icon-reading
+                View Form
+            %td
+              %a.button.btn.btn-default.btn-labeled{:href => form.unofficial_transcript.url(:original, false)}
+                %b
+                  %i.icon-envelop3
+                View Transcript
+            %td
+              %a.button.btn.btn-default.btn-labeled{:href => "/form/#{form.id}/letter.docx"}
+                %b
+                  %i.icon-file-word
+                Generate Letter

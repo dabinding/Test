@@ -1,0 +1,14 @@
+- if flash[:errors]
+  .alert.alert-danger.alert-bordered
+    %button.close{'data-dismiss' => 'alert', :type => 'button'}
+      %span ×
+      %span.sr-only Close
+    %span.text-semibold Errors:
+    - flash[:errors].each do |field, error|
+      %p
+        = "#{field} #{error[0]}"
+              
+= render :partial => '/form', :locals => { :resource => @form }
+
+- content_for :custom_javascripts do
+  = javascript_include_tag 'department_form'
